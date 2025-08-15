@@ -13,6 +13,8 @@ import {
   SettingOutlined,
   LogoutOutlined,
   UserOutlined,
+  TeamOutlined,
+  DeploymentUnitOutlined,
   DownOutlined,
 } from "@ant-design/icons";
 
@@ -22,8 +24,14 @@ const { Title, Text } = Typography;
 export default function Home() {
   const { user, logout } = useAuth();
 
-  const onSettings = () => {
-    message.info("Abrindo configurações...");
+  const openUserSettings = () => {
+    // navigate("/settings/users");
+    message.info("Abrindo configurações de usuários...");
+  };
+
+  const openSensorSettings = () => {
+    // navigate("/settings/sensors");
+    message.info("Abrindo configurações de sensores...");
   };
 
   const onLogout = async () => {
@@ -32,10 +40,16 @@ export default function Home() {
 
   const menuItems: MenuProps["items"] = [
     {
-      key: "settings",
-      label: "Configurações",
-      icon: <SettingOutlined />,
-      onClick: onSettings,
+      key: "users-settings",
+      label: "Configurações de Usuários",
+      icon: <TeamOutlined />,
+      onClick: openUserSettings,
+    },
+    {
+      key: "sensors-settings",
+      label: "Configurações de Sensores",
+      icon: <DeploymentUnitOutlined />,
+      onClick: openSensorSettings,
     },
     {
       type: "divider",
