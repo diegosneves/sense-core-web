@@ -5,7 +5,8 @@ import { AuthProvider } from "./auth";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import "./index.css";
-import ProtectedRoute from "./ProtectedRoute";
+import UsersSettings from "./pages/UsersSettings";
+import ProtectedByRole from "./ProtectedRoute";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -14,10 +15,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Routes>
           {/* Rota de login em "/" */}
           <Route path="/" element={<Login />} />
-
+          <Route path="/home" element={<Home />} />
           {/* Rotas protegidas */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/home" element={<Home />} />
+          <Route element={<ProtectedByRole allow={["admin", "manager"]} />}>
+            <Route path="/settings/users" element={<UsersSettings />} />
           </Route>
 
           {/* fallback opcional */}
