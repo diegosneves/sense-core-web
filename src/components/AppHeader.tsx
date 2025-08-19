@@ -50,7 +50,7 @@ export default function AppHeader({
   };
 
   const menuItems: MenuProps["items"] = useMemo(() => {
-    const items: MenuProps["items"] = [];
+    const items: NonNullable<MenuProps["items"]> = [];
 
     if (canSeeSettings(user?.role)) {
       items.push(
@@ -72,7 +72,7 @@ export default function AppHeader({
           icon: <DeploymentUnitOutlined />,
           onClick: openSensorSettings,
         },
-        { type: "divider" } as MenuProps["items"][number]
+        { type: "divider" } as NonNullable<MenuProps["items"]>[number]
       );
     }
 
