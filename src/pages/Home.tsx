@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { App, Layout, Typography, Row, Col } from "antd";
 import AppHeader from "../components/AppHeader";
 import SensorPressureCard from "../components/SensorPressureCard";
-import { useSensors } from "../sensors";
+import { useSensors } from "../sensors/useSensors";
 
 const { Content, Footer } = Layout;
 const { Title, Text } = Typography;

@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./auth";
-import { SensorsProvider } from "./sensors";
+import { AuthProvider } from "./auth/AuthProvider";
+import { SensorsProvider } from "./sensors/SensorProvider";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import "./index.css";

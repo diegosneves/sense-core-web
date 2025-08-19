@@ -17,11 +17,12 @@ import {
 import type { ColumnsType } from "antd/es/table";
 import AppHeader from "../components/AppHeader";
 import {
-  useSensors,
   type Sensor,
   type SensorType,
   type SensorLine,
-} from "../sensors";
+} from "../sensors/SensorTypes";
+
+import { useSensors } from "../sensors/useSensors";
 
 const { Content, Footer } = Layout;
 const { Title } = Typography;

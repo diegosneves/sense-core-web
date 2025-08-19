@@ -1,27 +1,9 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
-
-export type SensorType = "pressao" | "temperatura" | "vazao" | "umidade";
-export type SensorLine = "Linha A" | "Linha B" | "Linha C" | "Linha D";
-
-export type Sensor = {
-  id: string;
-  name: string;
-  type: SensorType;
-  line: SensorLine;
-};
-
-type SensorsContextType = {
-  sensors: Sensor[];
-  addSensor: (data: Omit<Sensor, "id">) => Sensor;
-  removeSensor: (id: string) => void;
-  resetSensors: () => void;
-};
-
-const SensorsContext = createContext<SensorsContextType | undefined>(undefined);
+import React, { useMemo, useState } from "react";
+import { SensorsContext } from "./SensorsContext";
+import type { Sensor } from "./SensorTypes";
 
 export function SensorsProvider({ children }: { children: React.ReactNode }) {
   const [sensors, setSensors] = useState<Sensor[]>([
-    // Mock inicial opcional
     {
       id: "s1",
       name: "Sensor de Pressão (Linha A)",
@@ -56,10 +38,4 @@ export function SensorsProvider({ children }: { children: React.ReactNode }) {
   return (
     <SensorsContext.Provider value={value}>{children}</SensorsContext.Provider>
   );
-}
-
-export function useSensors() {
-  const ctx = useContext(SensorsContext);
-  if (!ctx) throw new Error("useSensors must be used within SensorsProvider");
-  return ctx;
 }

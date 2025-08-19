@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
-import { useAuth } from "../auth";
+import { useAuth } from "../auth/useAuth";
 import { Form, Input, Button, Typography, Alert } from "antd";
 
 const { Title } = Typography;
@@ -27,7 +27,7 @@ export default function Login() {
     try {
       await login(values.username, values.password);
       navigate("/home", { replace: true });
-    } catch (err) {
+    } catch {
       setError("Credenciais inválidas. Tente novamente.");
     } finally {
       setSubmitting(false);

@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { useAuth } from "../auth";
+import { useMemo, useCallback } from "react";
+import { useAuth } from "../auth/useAuth";
 import {
   Layout,
   Typography,
@@ -30,20 +30,20 @@ export default function AppHeader({
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const openUserSettings = () => navigate("/settings/users");
-  const openSensorSettings = () => {
-    navigate("/settings/sensors");
-  };
-  const onLogout = async () => {
+  const openUserSettings = useCallback(
+    () => navigate("/settings/users"),
+    [navigate]
+  );
+  const openSensorSettings = useCallback(
+    () => navigate("/settings/sensors"),
+    [navigate]
+  );
+  const onLogout = useCallback(async () => {
     await logout();
     navigate("/");
-  };
+  }, [logout, navigate]);
+  const home = useCallback(() => navigate("/home"), [navigate]);
 
-  const home = () => {
-    navigate("/home");
-  };
-
-  // Função de checagem de permissão
   const canSeeSettings = (role?: string | null) => {
     if (!role) return false;
     return role === "admin" || role === "manager";
@@ -52,7 +52,6 @@ export default function AppHeader({
   const menuItems: MenuProps["items"] = useMemo(() => {
     const items: MenuProps["items"] = [];
 
-    // Adiciona itens de configurações apenas se permitido
     if (canSeeSettings(user?.role)) {
       items.push(
         {
@@ -77,7 +76,6 @@ export default function AppHeader({
       );
     }
 
-    // Item de sair sempre visível
     items.push({
       key: "logout",
       label: "Sair",
@@ -87,7 +85,7 @@ export default function AppHeader({
     });
 
     return items;
-  }, [user?.role]);
+  }, [user?.role, home, openUserSettings, openSensorSettings, onLogout]);
 
   return (
     <Header
