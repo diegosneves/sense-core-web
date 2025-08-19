@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instalar dependências
-RUN npm ci --only=production=false
+RUN npm ci
 
 # Copiar código fonte
 COPY . .
@@ -24,8 +24,8 @@ FROM nginx:alpine
 # Instalar curl para healthcheck
 RUN apk add --no-cache curl
 
-# Remover configuração padrão do nginx
-RUN rm /etc/nginx/conf.d/default.conf
+# Limpar completamente o diretório do nginx
+RUN rm -rf /usr/share/nginx/html/*
 
 # Copiar configuração customizada do nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
