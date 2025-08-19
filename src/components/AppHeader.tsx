@@ -39,6 +39,10 @@ export default function AppHeader({
     navigate("/");
   };
 
+  const home = () => {
+    navigate("/home");
+  };
+
   // Função de checagem de permissão
   const canSeeSettings = (role?: string | null) => {
     if (!role) return false;
@@ -51,6 +55,12 @@ export default function AppHeader({
     // Adiciona itens de configurações apenas se permitido
     if (canSeeSettings(user?.role)) {
       items.push(
+        {
+          key: "go-home",
+          label: "Home",
+          icon: <TeamOutlined />,
+          onClick: home,
+        },
         {
           key: "users-settings",
           label: "Configurações de Usuários",
