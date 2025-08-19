@@ -1,0 +1,41 @@
+name: CI DEVELOP
+
+on:
+  pull_request:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  check-application:
+    strategy:
+      matrix:
+        node: [ '20' ]
+        ubuntu: [ 'ubuntu-latest' ]
+    runs-on: ${{ matrix.ubuntu }}
+
+    env:
+      NODE_ENV: dev
+      API_VERSION: dev
+
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint código
+        run: npm run lint
+
+      - name: Build aplicação
+        run: npm run build
+        env:
+          VITE_API_VERSION: ${{ env.API_VERSION }}
