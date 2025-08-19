@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   App,
   Layout,
@@ -35,7 +35,7 @@ type UserRow = {
 export default function UsersSettings() {
   const [form] = Form.useForm();
   const [users, setUsers] = useState<UserRow[]>([
-    // opcional: inicialize com seus mocks se quiser começar a lista preenchida
+    // opcional: inicializar mocks lista preenchida
     // { key: "u1", id: "u1", name: "...", email: "...", phone: "...", role: "admin", username: "..." },
   ]);
 

@@ -32,17 +32,16 @@ export default function AppHeader({
 
   const openUserSettings = () => navigate("/settings/users");
   const openSensorSettings = () => {
-    // Se precisar, ajuste para uma rota real: navigate("/settings/sensors");
     navigate("/settings/sensors");
   };
   const onLogout = async () => {
     await logout();
+    navigate("/");
   };
 
   // Função de checagem de permissão
   const canSeeSettings = (role?: string | null) => {
     if (!role) return false;
-    // Apenas admin e manager podem ver as configurações
     return role === "admin" || role === "manager";
   };
 
