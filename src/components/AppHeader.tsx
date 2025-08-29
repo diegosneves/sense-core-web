@@ -44,15 +44,39 @@ export default function AppHeader({
   }, [logout, navigate]);
   const home = useCallback(() => navigate("/home"), [navigate]);
 
-  const canSeeSettings = (role?: string | null) => {
-    if (!role) return false;
-    return role === "admin" || role === "manager";
-  };
+  // const canSeeSettings = (role?: string | null) => {
+  //   if (!role) return false;
+  //   return role === "admin" || role === "manager";
+  // };
 
   const menuItems: MenuProps["items"] = useMemo(() => {
     const items: NonNullable<MenuProps["items"]> = [];
 
-    if (canSeeSettings(user?.role)) {
+    // if (canSeeSettings(user?.role)) {
+    //   items.push(
+    //     {
+    //       key: "go-home",
+    //       label: "Home",
+    //       icon: <TeamOutlined />,
+    //       onClick: home,
+    //     },
+    //     {
+    //       key: "users-settings",
+    //       label: "Configurações de Usuários",
+    //       icon: <TeamOutlined />,
+    //       onClick: openUserSettings,
+    //     },
+    //     {
+    //       key: "sensors-settings",
+    //       label: "Configurações de Sensores",
+    //       icon: <DeploymentUnitOutlined />,
+    //       onClick: openSensorSettings,
+    //     },
+    //     { type: "divider" } as NonNullable<MenuProps["items"]>[number]
+    //   );
+    // }
+
+    {
       items.push(
         {
           key: "go-home",
