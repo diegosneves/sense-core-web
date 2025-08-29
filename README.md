@@ -67,3 +67,24 @@ export default tseslint.config([
   },
 ])
 ```
+
+---
+
+## Sense Core Server (Backend)
+
+### Documentação
+
+- [Swagger / local](http://localhost:8080/q/swagger-ui/)
+
+### Observabilidade
+
+- [Jaeger / local](http://localhost:16686/)
+
+---
+
+## Sense Core Web (Frontend)
+
+- [App / Local](http://localhost:5143/)
+
+---
+
